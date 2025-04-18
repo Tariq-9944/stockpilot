@@ -1,0 +1,4 @@
+Flask
+flask-babel
+alpaca-trade-api
+python-dotenv
