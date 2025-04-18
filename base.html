@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="{{ get_locale() }}">
+<head>
+  <meta charset="utf-8">
+  <title>StockPilot</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+  <nav>
+    <a href="{{ url_for('index') }}">Home</a> |
+    <a href="{{ url_for('user.login') }}">Log In</a> |
+    <a href="{{ url_for('user.register') }}">Sign Up</a>
+    <select id="lang-select" onchange="setLanguage(this.value)">
+      {% for lang in config['LANGUAGES'] %}
+      <option value="{{ lang }}" {% if lang == get_locale() %}selected{% endif %}>{{ lang.upper() }}</option>
+      {% endfor %}
+    </select>
+  </nav>
+  <div class="content">{% block content %}{% endblock %}</div>
+  <footer>
+    <p>© 2025 StockPilot Technologies Ltd.</p>
+    <p>Support: support@stockpilot.io | +971 4 123 4567</p>
+  </footer>
+  <script>
+    function setLanguage(lang) {
+      document.cookie = "language=" + lang + ";path=/";
+      location.reload();
+    }
+  </script>
+</body>
+</html>
